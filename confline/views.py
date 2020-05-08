@@ -14,7 +14,7 @@ def my_conference_line(request):
     response.say(
         'Thank you for allowing TireTutor to make tire buying easier ' +
         'for you! Please wait while we connect you to your tire dealer now!')
-    dial.number(target_number, url=None)
+    dial.number(target_number, url='http://demo.twilio.com/docs/classic.mp3')
     response.append(dial)
     
     return HttpResponse(str(response))
@@ -36,3 +36,7 @@ def my_conference_line(request):
 #     response.append(dial)
 
 #     return HttpResponse(str(response))
+
+# On behalf of the whole TireTutor team, we would just like to say thank you for
+# allowing us to make tire buying easier for you! Please wait while we connect
+# you to your tire dealer now!
