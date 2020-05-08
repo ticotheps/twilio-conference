@@ -11,8 +11,14 @@ NUM_DIGITS = config("NUM_DIGITS", default=4, cast=int)
 def my_conference_line(request):
     response = VoiceResponse()
     dial = Dial()
-    response.say("Thank you for allowing TireTutor to make tire buying easier for you! Please wait while we connect you to your tire dealer now.")
-    dial.conference('TireTutor Conference Room', wait_url='http://demo.twilio.com/docs/classic.mp3')
+    response.say('Thank you for allowing TireTutor to make tire buying easier for you! Please wait while we connect you to your tire dealer now.')
+    dial.conference(
+        'TireTutor Conference Room', 
+        beep=False,
+        wait_url='http://demo.twilio.com/docs/classic.mp3',
+        start_conference_on_enter=True,
+        end_conference_on_exit=True
+    )
     response.append(dial)
 
     return HttpResponse(str(response))
