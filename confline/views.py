@@ -16,7 +16,7 @@ def my_conference_line(request):
     response.say(
         'Thank you for allowing TireTutor to make tire buying easier ' +
         'for you! Please wait while we connect you to your tire dealer now!')
-    dial.number(target_number, url=CALL_WHISPER_URL)
+    dial.number(target_number, url=CALL_WHISPER_URL, method='GET')
     response.append(dial)
     
     return HttpResponse(str(response))
