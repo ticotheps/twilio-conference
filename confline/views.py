@@ -15,10 +15,12 @@ def my_conference_line(request):
         conf_pin = request.POST['Digits']
     
         if conf_pin == CONF_PIN:  # <- set desired PIN in .env
-            response.say("Thank you for allowing TireTutor to make tire buying easier for you! Please wait while we connect you to your tire dealer.")
+            response.say("Thank you for allowing TireTutor to make tire buying easier for you! Please wait while we connect you to your tire experts.")
             dial = Dial()
-            dial.conference('TireTutor Conference Room',
+            dial.conference(
+                'TireTutor Conference Room',
                 max_participants=MAX_PARTICIPANTS,
+                wait_url='http://demo.twilio.com/docs/classic.mp3'
             )
             response.append(dial)
         
