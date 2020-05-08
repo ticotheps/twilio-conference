@@ -1,18 +1,21 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from decouple import config
-from twilio.twiml.voice_response import Conference, Dial, VoiceResponse, Say
+from twilio.twiml.voice_response import VoiceResponse, Say, Dial, Number
 
 @csrf_exempt
 def my_conference_line(request):
     response = VoiceResponse()
+    dial = Dial()
     
     target_number = config('TARGET_NUMBER')
+    number = Number(target_number)
     
     response.say(
         'Thank you for allowing TireTutor to make tire buying easier ' +
         'for you! Please wait while we connect you to your tire dealer now!')
-    response.dial(target_number)
+    dial.number(target_number, url=None)
+    response.append(dial)
     
     return HttpResponse(str(response))
 
